@@ -24,9 +24,17 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-
-
+app.get('/api',(req,res)=>{
+  res.json({
+    unix:new Date().getTime(),
+    utc:new Date().toUTCString()
+  })
+})
+app.get('/api/:timestamp',(req,res)=>{
+  const timestamp = req.params.timestamp;
+  res.send(timestamp)
+})
 // listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
+var listener = app.listen(3050, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
