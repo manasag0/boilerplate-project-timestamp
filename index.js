@@ -47,6 +47,6 @@ if(!isNaN(timestamp) && timestamp.length===13){
   res.json({error: "Invalid Date"})
 })
 // listen for requests :)
-var listener = app.listen(3050, function () {
+var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
