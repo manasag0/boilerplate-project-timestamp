@@ -38,8 +38,13 @@ if(!isNaN(timestamp) && timestamp.length===13){
     utc: new Date(parseInt(timestamp)).toUTCString()
   })
 }
-
-  res.send(timestamp)
+  if(new Date(timestamp).toUTCString()!=="Invalid Date"){
+    res.json({
+      unix: new Date(timestamp).getTime(),
+      utc: new Date(timestamp).toUTCString()
+    })
+  }
+  res.json({error: "Invalid Date"})
 })
 // listen for requests :)
 var listener = app.listen(3050, function () {
