@@ -32,6 +32,13 @@ app.get('/api',(req,res)=>{
 })
 app.get('/api/:timestamp',(req,res)=>{
   const timestamp = req.params.timestamp;
+if(!isNaN(timestamp) && timestamp.length===13){
+  return res.json({
+    unix: parseInt(timestamp),
+    utc: new Date(parseInt(timestamp)).toUTCString()
+  })
+}
+
   res.send(timestamp)
 })
 // listen for requests :)
